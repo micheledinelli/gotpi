@@ -57,7 +57,7 @@ If two images are encrypted using the same key, hence violating the rule of one-
 ### As a CLI Utility
 
 ```
-go get -u github.com/micheledinelli/gotpi/cmd/gotpi
+go install github.com/micheledinelli/gotpi/cmd/gotpi@latest
 ```
 
 ```
