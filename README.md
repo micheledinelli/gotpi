@@ -12,7 +12,7 @@ It supports key generation in two modes: standard black and white (Grayscale) or
 ## Two-Time Pad security
 This is inspired by [this question](https://crypto.stackexchange.com/questions/59/taking-advantage-of-one-time-pad-key-reuse) on the secutiy of Two-Time Pad on StackOverflow. Indeed this tool is a great way to visualize why key reuse is fatal for OTP security.
 
-If two different images ($m_1​$ and $m_2​$) are encrypted with the same key ($k$), an attacker can XOR the two ciphertexts together. This removes the key and leaves the combined visual data of both images ($m_1 \oplus m_2​$), making the contents recognizable 
+If two different messages ($m_1​$ and $m_2​$) are encrypted with the same key ($k$), an attacker can XOR the two ciphertexts together. This removes the key and leaves the combined original messages in the hand of the adversary ($m_1 \oplus m_2​$). 
 
 $$ c_1\oplus c_2 = (m_1 \oplus k) \oplus (m_2 \oplus k) = m_1 \oplus m_2 $$ 
 
@@ -57,7 +57,7 @@ If two images are encrypted using the same key, hence violating the rule of one-
 ### As a CLI Utility
 
 ```
-go get -u github.com/micheledinelli/gotpi
+go install github.com/micheledinelli/gotpi@latest
 ```
 
 ```
