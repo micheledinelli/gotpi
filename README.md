@@ -32,7 +32,7 @@ If two images are encrypted using the same key, hence violating the rule of one-
 
 `gotpi enc -f vibrant.png -k rgb-key.png -o vibrant.enc.rgb.png --rgb`
 
-| $c$ | | $k$ | | $m \oplus k = c$ |
+| $c$ | | $k$ | | $c \oplus k = m$ |
 | :---: | :---: | :---: | :---: | :---: |
 | ![examples/vibrant.enc.rgb.png](./examples/vibrant.enc.rgb.png) | $\oplus$ | ![examples/rgb-key](./examples/rgb-key.png) | $=$ | ![examples/vibrant.dec.rgb.png](./examples/vibrant.dec.rgb.png) |
 
