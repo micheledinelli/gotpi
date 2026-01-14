@@ -57,7 +57,7 @@ If two images are encrypted using the same key, hence violating the rule of one-
 ### As a CLI Utility
 
 ```
-go install github.com/micheledinelli/gotpi@latest
+go get -u github.com/micheledinelli/gotpi/cmd/gotpi
 ```
 
 ```
@@ -91,17 +91,25 @@ go get -u github.com/micheledinelli/gotpi
 ```
 
 ```go
+package main
+
 import (
 	"image"
+	"image/png"
 	"os"
 
-    "github.com/micheledinelli/gotpi"
+	"github.com/micheledinelli/gotpi"
 )
 
 func main() {
-    k := gotpi.KeyGen(keyF, keyW, *rgb)
+	colored := true
 
-    f, err := os.Open(path)
+	// Generate a key of 256x256 pixels
+	k := gotpi.KeyGen(256, colored)
+
+	// Load an image
+	path := "image.png"
+	f, err := os.Open(path)
 	if err != nil {
 		panic(err)
 	}
@@ -111,8 +119,18 @@ func main() {
 		panic(err)
 	}
 
-    var bool rgb = true
-    out := gotpi.Encrypt(img, k, rgb)
+	// Encrypt the image
+	out := gotpi.Encrypt(img, k, colored)
+
+	// Save the output
+	outF, err := os.Create("out.png")
+	if err != nil {
+		panic(err)
+	}
+	defer outF.Close()
+	if err := png.Encode(outF, out); err != nil {
+		panic(err)
+	}
 }
 ```
 
