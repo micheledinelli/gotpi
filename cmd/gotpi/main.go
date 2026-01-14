@@ -43,8 +43,10 @@ func main() {
 		return
 	}
 
+	c := rgb != nil && *rgb
+
 	if keyGen.Happened() {
-		k := gotpi.KeyGen(keyF, keyW, *rgb)
+		k := gotpi.KeyGen(*keyF, *keyW, c)
 		save(*keyF, k)
 		if *verbose {
 			termPrint(k)
@@ -56,7 +58,7 @@ func main() {
 		img := imgOpen(*imgF)
 		keyImg := imgOpen(*key)
 
-		out := gotpi.Encrypt(img, keyImg, *rgb)
+		out := gotpi.Encrypt(img, keyImg, c)
 		save(*outEnc, out)
 
 		if verbose != nil && *verbose {
@@ -73,7 +75,7 @@ func main() {
 		decImg := imgOpen(*decImgF)
 		decKeyImg := imgOpen(*decKey)
 
-		out := gotpi.Decrypt(decImg, decKeyImg, *rgb)
+		out := gotpi.Decrypt(decImg, decKeyImg, c)
 		save(*outDec, out)
 
 		if verbose != nil && *verbose {
@@ -90,7 +92,7 @@ func main() {
 		a := imgOpen(*xorImg1)
 		b := imgOpen(*xorImg2)
 
-		out := gotpi.Encrypt(a, b, *rgb)
+		out := gotpi.Encrypt(a, b, c)
 		save(*outXor, out)
 
 		if verbose != nil && *verbose {

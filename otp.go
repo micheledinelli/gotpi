@@ -70,19 +70,21 @@ func encRGB(img, k image.Image, out *image.RGBA) {
 	}
 }
 
-// KeyGen generates a new OTP key image. If the rgb flag is true,
-// it generates an RGB key image otherwise, it generates a black
-// and white key image. The key image is always of size kw x kw.
+// KeyGen generates a new OTP key image.
+// It accepts the keyFile path to save the key image to, the kw size of
+// the key image, and a rgb flag. If the rgb flag is true, it generates
+// an RGB key image otherwise, it generates a black and white key image.
+// The key image is always of size kw x kw.
 // A rgb otp key can encrypt coloured images, while a black and white
 // otp key can only encrypt black and white images. Attempting to ecnrtypt
 // a coloured image with a black and white key will result in loss of
 // colour information and unsuccessful decryption.
-func KeyGen(keyFile *string, kw *int, rgb bool) image.Image {
+func KeyGen(keyFile string, kw int, rgb bool) image.Image {
 	var k image.Image
 	if rgb {
-		k = keyGenRGB(*kw, *kw)
+		k = keyGenRGB(kw, kw)
 	} else {
-		k = keyGenBW(*kw, *kw)
+		k = keyGenBW(kw, kw)
 	}
 	return k
 }
